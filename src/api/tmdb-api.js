@@ -65,3 +65,13 @@ export const getMovie = async ( args ) => {
     }
     return response.json();
   };
+
+  export const getMovieCast = async (id) => {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`
+    );
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    return response.json();
+  };

@@ -79,7 +79,7 @@ export const getMovie = async ( args ) => {
 
   export const getTv = async () => {
     const response = await fetch(
-      `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&sort_by=popularity.desc&page=1`
+      `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_monetization_types=flatrate`
     );
     if (!response.ok) {
       throw new Error(response.json().message);

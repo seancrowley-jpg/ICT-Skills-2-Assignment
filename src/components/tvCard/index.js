@@ -34,7 +34,7 @@ export default function TvCard({ show, action }) {
         className={classes.header}
         title={
           <Typography variant="h5" component="p">
-            {show.title}{" "}
+            {show.name}{" "}
           </Typography>
         }
       />

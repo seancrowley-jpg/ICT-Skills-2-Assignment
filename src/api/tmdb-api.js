@@ -76,3 +76,13 @@ export const getMovie = async ( args ) => {
     //console.log(response)
     return response.json();
   };
+
+  export const getTv = async () => {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&sort_by=popularity.desc&page=1`
+    );
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    return response.json();
+  };

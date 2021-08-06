@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useQuery } from "react";
 import Chip from "@material-ui/core/Chip";
 import Paper from "@material-ui/core/Paper";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
@@ -10,6 +10,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import MovieReviews from "../movieReviews";
+import CastList from "../castList";
+import { getMovieCast } from "../../api/tmdb-api";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -89,6 +91,7 @@ const MovieDetails = ({ movie }) => {
         <NavigationIcon />
         Reviews
       </Fab>
+      <CastList movie={movie} />
       <Drawer
         anchor="top"
         open={drawerOpen}

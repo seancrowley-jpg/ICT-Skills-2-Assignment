@@ -73,5 +73,6 @@ export const getMovie = async ( args ) => {
     if (!response.ok) {
       throw new Error(response.json().message);
     }
+    console.log(response)
     return response.json();
   };

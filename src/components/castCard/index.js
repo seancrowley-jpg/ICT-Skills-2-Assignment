@@ -25,7 +25,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CastCard({ cast }) {
+export default function CastCard({ star }) {
   const classes = useStyles();
   
   return (
@@ -34,16 +34,8 @@ export default function CastCard({ cast }) {
         className={classes.header}
         name={
           <Typography variant="h5" component="p">
-            {movie.title}{" "}
+            {star.name}
           </Typography>
-        }
-      />
-      <CardMedia
-        className={classes.media}
-        image={
-          cast.profile_path
-            ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-            : img
         }
       />
       <CardContent>
@@ -51,7 +43,7 @@ export default function CastCard({ cast }) {
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
               <CalendarIcon fontSize="small" />
-              {cast.character}
+              {star.character}
             </Typography>
           </Grid>
         </Grid>

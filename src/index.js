@@ -11,6 +11,7 @@ import AddMovieReviewPage from "./pages/addMovieReviewPage";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import MoviesContextProvider from "./contexts/moviesContext";
+import DiscoverTvPage from "./pages/discoverTvPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -40,6 +41,11 @@ const App = () => {
               exact
               path="/movies/favorites"
               component={FavoriteMoviesPage}
+            />
+            <Route
+              exact
+              path="/tv"
+              component={DiscoverTvPage}
             />
             <Route path="/movies/:id" component={MoviePage} />
             <Route exact path="/" component={HomePage} />

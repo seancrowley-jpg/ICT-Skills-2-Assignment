@@ -62,14 +62,6 @@ export default function TvCard({ show, action }) {
           </Grid>
         </Grid>
       </CardContent>
-      <CardActions disableSpacing>
-        {action(movie)}
-        <Link to={`/tv/${tv.id}`}>
-          <Button variant="outlined" size="medium" color="primary">
-            More Info ...
-          </Button>
-        </Link>
-      </CardActions>
     </Card>
   );
 }

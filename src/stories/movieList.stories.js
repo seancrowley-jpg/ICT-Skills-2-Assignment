@@ -18,11 +18,11 @@ export default {
 
 export const Basic = () => {
   const movies = [
-    { ...SampleMovie, id: 1 },
-    { ...SampleMovie, id: 2 },
-    { ...SampleMovie, id: 3 },
-    { ...SampleMovie, id: 4 },
-    { ...SampleMovie, id: 5 },
+    { ...SampleMovie.movie, id: 1 },
+    { ...SampleMovie.movie, id: 2 },
+    { ...SampleMovie.movie, id: 3 },
+    { ...SampleMovie.movie, id: 4 },
+    { ...SampleMovie.movie, id: 5 },
   ];
   return (
     <Grid container spacing={5}>

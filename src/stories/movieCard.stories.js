@@ -18,7 +18,7 @@ export default {
 export const Basic = () => {
   return (
     <MovieCard
-      movie={SampleMovie}
+      movie={SampleMovie.movie}
       action={(movie) => <AddToFavoritesIcon movie={movie} />}
       taging={(movie) => null}
     />
@@ -27,7 +27,7 @@ export const Basic = () => {
 Basic.storyName = "Default";
 
 export const Exceptional = () => {
-  const sampleNoPoster = { ...SampleMovie, poster_path: undefined };
+  const sampleNoPoster = { ...SampleMovie.movie, poster_path: undefined };
   return (
     <MovieCard
       movie={sampleNoPoster}

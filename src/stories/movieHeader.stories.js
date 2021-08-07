@@ -12,6 +12,6 @@ export default {
   ],
 };
 
-export const Basic = () => <MovieHeader movie={SampleMovie} />;
+export const Basic = () => <MovieHeader movie={SampleMovie.movie} />;
 
 Basic.storyName = "Default";

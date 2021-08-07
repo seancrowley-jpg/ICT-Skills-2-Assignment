@@ -25,24 +25,31 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CastCard({ star }) {
+export default function CastCard({ star, moive }) {
   const classes = useStyles();
   
   return (
     <Card className={classes.card}>
       <CardHeader
         className={classes.header}
-        name={
+        title={
           <Typography variant="h5" component="p">
             {star.name}
           </Typography>
+        }
+      />
+      <CardMedia
+        className={classes.media}
+        image={
+          star.profile_path
+            ? `https://image.tmdb.org/t/p/w500/${star.profile_path}`
+            : img
         }
       />
       <CardContent>
         <Grid container>
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
-              <CalendarIcon fontSize="small" />
               {star.character}
             </Typography>
           </Grid>

@@ -78,6 +78,7 @@ export default {
     video: false,
     vote_average: 7,
     vote_count: 9692,
+    
   },
   tv: {
     backdrop_path: "/jOJP93WpQrmSXX16lQCNulwuUVO.jpg",
@@ -191,4 +192,22 @@ export default {
     credit_id: "5679cdd4c3a3685bbf000206",
     order: 0
   },
+  credits:{
+    id: 181808,
+    cast: [
+      {
+        adult: false,
+        gender: 2,
+        id: 2,
+        known_for_department: "Acting",
+        name: "Mark Hamill",
+        original_name: "Mark Hamill",
+        popularity: 5.775,
+        profile_path: "/zMQ93JTLW8KxusKhOlHFZhih3YQ.jpg",
+        cast_id: 14,
+        character: "Luke Skywalker / Dobbu Scay (voice)",
+        credit_id: "5679cdd4c3a3685bbf000206",
+        order: 0
+      }],
+    }
 };

@@ -12,9 +12,22 @@ export default function MovieCast({ movie }) {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(cast)
-  const stars = cast.cast
-  console.log(stars)
+  console.log(cast);
+  const stars = cast.cast;
+  console.log(stars);
+  let castCards = stars.map((s) => (
+    <Grid key={s.id} item xs={12} sm={6} md={4} lg={3} xl={2}>
+      <Cast key={s.id} star={s} />
+    </Grid>
+  ));
+  return (
+    <>
+    {stars.length > 0 ?
+       castCards :
+       <p>Waiting for cast details</p>
+       }
+    </>
+  );
   {/*let castCards = stars.map((s) => (
     <>
     {stars ? (
@@ -31,7 +44,7 @@ export default function MovieCast({ movie }) {
   );
     return castCards;*/}
   
-return (
+{/*return (
   <h1>Hello World</h1>
-)
+)*/}
 };

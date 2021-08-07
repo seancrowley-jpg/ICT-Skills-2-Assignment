@@ -1,4 +1,4 @@
-import React, { useEffect, useState }  from "react";
+import React, { useEffect, useState } from "react";
 import Cast from "../castCard";
 import Grid from "@material-ui/core/Grid";
 import { getMovieCast } from "../../api/tmdb-api";
@@ -12,10 +12,12 @@ export default function MovieCast({ movie }) {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  console.log("CAST")
   console.log(cast);
   const stars = cast.cast;
+  console.log("STARS");
   console.log(stars);
-  let castCards = stars.map((s) => (
+  {/*let castCards = stars.map((s) => (
     <Grid key={s.id} item xs={12} sm={6} md={4} lg={3} xl={2}>
       <Cast key={s.id} star={s} />
     </Grid>
@@ -27,24 +29,6 @@ export default function MovieCast({ movie }) {
        <p>Waiting for cast details</p>
        }
     </>
-  );
-  {/*let castCards = stars.map((s) => (
-    <>
-    {stars ? (
-      <>
-        <Grid key={s.id} item xs={12} sm={6} md={4} lg={3} xl={2}>
-          <Cast key={s.id} star={s}/>
-          </Grid>
-      </>
-    ) : (
-      <p>Waiting for cast details</p>
-    )}
-    </>
-  )
-  );
-    return castCards;*/}
-  
-{/*return (
-  <h1>Hello World</h1>
-)*/}
-};
+      );*/}
+  return <h1>Hello World</h1>;
+}

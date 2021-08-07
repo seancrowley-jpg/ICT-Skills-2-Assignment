@@ -25,7 +25,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CastCard({ star, moive }) {
+export default function CastCard({ star }) {
   const classes = useStyles();
   
   return (

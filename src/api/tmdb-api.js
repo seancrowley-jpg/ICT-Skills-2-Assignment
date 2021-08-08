@@ -91,10 +91,24 @@ export const getMovie = async ( args ) => {
     // eslint-disable-next-line no-unused-vars
     const [prefix, { id }] = queryKey;
     const response = await fetch(
-      `https://api.themoviedb.org/3/tv/${id}/images?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/tv/${id}/images?api_key=${process.env.REACT_APP_TMDB_KEY}`
     )
     if (!response.ok) {
       throw new Error(response.json().message);
     }
+    return response.json();
+  };
+
+  export const getTvDetails = async ( args ) => {
+    console.log(args)
+    // eslint-disable-next-line no-unused-vars
+    const [prefix, { id }] = args.queryKey;
+    const response = await fetch(
+      `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`
+    );
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    console.log(response)
     return response.json();
   };

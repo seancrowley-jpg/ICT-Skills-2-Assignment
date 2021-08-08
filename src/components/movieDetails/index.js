@@ -12,6 +12,7 @@ import Drawer from "@material-ui/core/Drawer";
 import MovieReviews from "../movieReviews";
 import CastList from "../castList";
 import { getMovieCast } from "../../api/tmdb-api";
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     listStyle: "none",
     padding: theme.spacing(1.5),
-    margin: 0,
+    margin: 1,
+    padding: theme.spacing(2),
   },
   chip: {
     margin: theme.spacing(0.5),
@@ -91,7 +93,12 @@ const MovieDetails = ({ movie }) => {
         <NavigationIcon />
         Reviews
       </Fab>
-      <CastList movie={movie} />
+      <Typography variant="h5" component="h3">
+        Cast
+      </Typography>
+      <Grid container className={classes.root}>
+        <CastList movie={movie} />
+      </Grid>
       <Drawer
         anchor="top"
         open={drawerOpen}

@@ -28,6 +28,19 @@ const useStyles = makeStyles({
 export default function TvCard({ show, action }) {
   const classes = useStyles();
 
+  const { favorites, addToTvFavorites } = useContext(MoviesContext);
+
+  if (favorites.find((id) => id === show.id)) {
+    show.favorite = true;
+  } else {
+    show.favorite = false;
+  }
+
+  const handleAddToFavorite = (e) => {
+    e.preventDefault();
+    addToTvFavorites(show);
+  };
+
   return (
     <Card className={classes.card}>
       <CardHeader
@@ -36,6 +49,13 @@ export default function TvCard({ show, action }) {
           <Typography variant="h5" component="p">
             {show.name}{" "}
           </Typography>
+        }
+        avatar={
+          show.favorite ? (
+            <Avatar className={classes.avatar}>
+              <FavoriteIcon />
+            </Avatar>
+          ) : null
         }
       />
       <CardMedia
@@ -62,6 +82,14 @@ export default function TvCard({ show, action }) {
           </Grid>
         </Grid>
       </CardContent>
+      <CardActions disableSpacing>
+        {action(show)}
+        <Link to={`/tv/${show.id}`}>
+          <Button variant="outlined" size="medium" color="primary">
+            More Info ...
+          </Button>
+        </Link>
+      </CardActions>
     </Card>
   );
 }

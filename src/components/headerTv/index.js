@@ -21,12 +21,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TvHeader = ( { show, history}) => {
+const TvHeader = ({ show, history }) => {
   const classes = useStyles();
 
   return (
     <Paper component="div" className={classes.root}>
-      <IconButton aria-label="go back" onClick={() => history.goBack()} >
+      <IconButton aria-label="go back" onClick={() => history.goBack()}>
         <ArrowBackIcon color="primary" fontSize="large" />
       </IconButton>
 
@@ -36,9 +36,17 @@ const TvHeader = ( { show, history}) => {
           <HomeIcon color="primary" />
         </a>
         <br />
-        <span className={classes.tagLine}>{`   "${show.tagline}"`} </span>
+        <>
+          {show.tagLine ? (
+            <>
+              <span className={classes.tagLine}>{`   "${show.tagline}"`} </span>
+            </>
+          ) : (
+            <span className={classes.tagLine}>{`   "Popularity: ${show.popularity}"`} </span>
+          )}
+        </>
       </Typography>
-      <IconButton aria-label="go forward" onClick={() => history.goForward() } >
+      <IconButton aria-label="go forward" onClick={() => history.goForward()}>
         <ArrowForwardIcon color="primary" fontSize="large" />
       </IconButton>
     </Paper>

@@ -18,7 +18,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Box from "@material-ui/core/Box";
 import PropTypes from "prop-types";
-import CakeIcon from '@material-ui/icons/Cake';
+import CakeIcon from "@material-ui/icons/Cake";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1.5),
     margin: 0,
     backgroundColor: theme.palette.background.paper,
-  }
+  },
 }));
 
 const PersonDetails = ({ person }) => {
@@ -95,8 +95,25 @@ const PersonDetails = ({ person }) => {
 
       <Paper component="ul" className={classes.root}>
         <li>
-          <Chip label="Also Known As" className={classes.chip} color="primary" />
+          <Chip
+            label="Also Known As"
+            className={classes.chip}
+            color="primary"
+          />
         </li>
+        <>
+          {person.also_known_as.length > 0 ? (
+            <>
+              {person.also_known_as.map((g) => (
+                <li key={g}>
+                  <Chip label={g} className={classes.chip} />
+                </li>
+              ))}
+            </>
+          ) : (
+            <Chip label="No Known Other Names" />
+          )}
+        </>
         {person.also_known_as.map((g) => (
           <li key={g}>
             <Chip label={g} className={classes.chip} />
@@ -104,14 +121,13 @@ const PersonDetails = ({ person }) => {
         ))}
       </Paper>
       <Paper component="ul" className={classes.root}>
-          <Chip label="Known For:" className={classes.chip} />
-          <Chip label={person.known_for_department} className={classes.chip} />
+        <Chip label="Known For:" className={classes.chip} />
+        <Chip label={person.known_for_department} className={classes.chip} />
       </Paper>
       <Paper component="ul" className={classes.root}>
-          <Chip icon={<CakeIcon />}label="Birth Day" className={classes.chip} />
-          <Chip label={person.birthday} className={classes.chip} />
-          <Chip label={person.place_of_birth} className={classes.chip} />
-
+        <Chip icon={<CakeIcon />} label="Birth Day" className={classes.chip} />
+        <Chip label={person.birthday} className={classes.chip} />
+        <Chip label={person.place_of_birth} className={classes.chip} />
       </Paper>
 
       <div className={classes.tab}>

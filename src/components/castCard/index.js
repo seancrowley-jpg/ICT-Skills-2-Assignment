@@ -27,7 +27,7 @@ const useStyles = makeStyles({
 
 export default function CastCard({ star }) {
   const classes = useStyles();
-  
+
   return (
     <Card className={classes.card}>
       <CardHeader
@@ -51,10 +51,18 @@ export default function CastCard({ star }) {
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
               {star.character}
+              <>{star.character ? <>{star.character}</> : <>{star.job}</>}</>
             </Typography>
           </Grid>
         </Grid>
       </CardContent>
+      <CardActions disableSpacing>
+        <Link to={`/person/${star.id}`}>
+          <Button variant="outlined" size="medium" color="primary">
+            View Profile
+          </Button>
+        </Link>
+      </CardActions>
     </Card>
   );
 }

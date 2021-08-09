@@ -1,4 +1,4 @@
-import React, { useState, useQuery } from "react";
+import React, { useState, useQuery, useEffect } from "react";
 import Chip from "@material-ui/core/Chip";
 import Paper from "@material-ui/core/Paper";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
@@ -85,6 +85,16 @@ const MovieDetails = ({ movie }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [value, setValue] = React.useState(0);
 
+  const [stars, setStars] = useState([]);
+  const [crew, setCrew] = useState([]);
+  useEffect(() => {
+    getMovieCast(movie.id).then((castAndCrew) => {
+      setStars(castAndCrew.cast.slice(0,12))
+      setCrew(castAndCrew.crew.slice(0,12))
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -159,11 +169,13 @@ const MovieDetails = ({ movie }) => {
         </AppBar>
         <TabPanel value={value} index={0}>
           <Grid container className={classes.root}>
-            <CastList movie={movie} />
+            <CastList stars={stars} />
           </Grid>
         </TabPanel>
         <TabPanel value={value} index={1}>
-          Item Two
+        <Grid container className={classes.root}>
+            <CastList stars={crew} />
+          </Grid>
         </TabPanel>
         <TabPanel value={value} index={2}>
           Item Three

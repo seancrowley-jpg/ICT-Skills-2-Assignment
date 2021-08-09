@@ -32,9 +32,15 @@ const TvHeader = ({ show, history }) => {
 
       <Typography variant="h4" component="h3">
         {show.name}
-        <a href={show.homepage}>
-          <HomeIcon color="primary" />
-        </a>
+        <>
+          {show.homepage ? (
+            <>
+              <a href={show.homepage}> <HomeIcon color="primary" /> </a>
+            </>
+          ) : (
+            ""
+          )}
+        </>
         <br />
         <>
           {show.tagLine ? (
@@ -42,7 +48,7 @@ const TvHeader = ({ show, history }) => {
               <span className={classes.tagLine}>{`   "${show.tagline}"`} </span>
             </>
           ) : (
-            <span className={classes.tagLine}>{`   "Popularity: ${show.popularity}"`} </span>
+            <span className={classes.tagLine}>{`   Popularity: ${show.popularity}`} </span>
           )}
         </>
       </Typography>

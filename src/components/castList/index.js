@@ -8,11 +8,10 @@ export default function MovieCast({ movie }) {
   const [stars, setStars] = useState([]);
   useEffect(() => {
     getMovieCast(movie.id).then((castAndCrew) => {
-      setStars(castAndCrew.cast);
+      setStars(castAndCrew.cast.slice(0,12))
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(stars);
   let castCards = stars.map((s) => (
         <Grid key={s.id} item xs={12} sm={6} md={4} lg={3} xl={2}>
           <Cast key={s.id} star={s} />

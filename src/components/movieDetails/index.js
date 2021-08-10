@@ -11,13 +11,14 @@ import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import MovieReviews from "../movieReviews";
 import CastList from "../castList";
-import { getMovieCast } from "../../api/tmdb-api";
+import { getMovieCast, getMovies, getRecomendedMovies, getSimilarMovies } from "../../api/tmdb-api";
 import Grid from "@material-ui/core/Grid";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Box from "@material-ui/core/Box";
 import PropTypes from "prop-types";
+import MovieList from "../movieList";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -80,21 +81,23 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const MovieDetails = ({ movie }) => {
+const MovieDetails = ({ movie, action }) => {
   const classes = useStyles();
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [value, setValue] = React.useState(0);
-
+  const [value, setValue] = useState(0);
   const [stars, setStars] = useState([]);
   const [crew, setCrew] = useState([]);
+  const [recomendedMovies, setRecomendedMovies] = useState([]);
   useEffect(() => {
     getMovieCast(movie.id).then((castAndCrew) => {
       setStars(castAndCrew.cast.slice(0,12))
       setCrew(castAndCrew.crew.slice(0,12))
+    })
+    getRecomendedMovies(movie.id).then((moives) => {
+      setRecomendedMovies(moives.results)
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -164,7 +167,7 @@ const MovieDetails = ({ movie }) => {
           >
             <Tab label="Cast" {...a11yProps(0)} />
             <Tab label="Crew" {...a11yProps(1)} />
-            <Tab label="Similar Movies" {...a11yProps(2)} />
+            <Tab label="Recomended Movies" {...a11yProps(2)} />
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
@@ -178,7 +181,9 @@ const MovieDetails = ({ movie }) => {
           </Grid>
         </TabPanel>
         <TabPanel value={value} index={2}>
-          Item Three
+        <Grid container className={classes.root}>
+          <MovieList movies={recomendedMovies} action={action}/>
+          </Grid>
         </TabPanel>
       </div>
       <Drawer

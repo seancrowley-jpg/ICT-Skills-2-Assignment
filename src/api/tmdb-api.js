@@ -149,3 +149,25 @@ export const getMovie = async ( args ) => {
     //console.log(response)
     return response.json();
   };
+
+  export const getShowCast = async (id) => {
+    const response = await fetch(
+      ` https://api.themoviedb.org/3/tv/${id}/credits?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`
+    );
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    //console.log(response)
+    return response.json();
+  };
+
+  export const getRecomendedShows = async (id) => {
+    const response = await fetch(
+      ` https://api.themoviedb.org/3/tv/${id}/recommendations?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`
+    );
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    //console.log(response)
+    return response.json();
+  };

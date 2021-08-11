@@ -1,16 +1,54 @@
-import React, { useState, useQuery } from "react";
+import React, { useState, useEffect } from "react";
 import Chip from "@material-ui/core/Chip";
 import Paper from "@material-ui/core/Paper";
-import AccessTimeIcon from "@material-ui/icons/AccessTime";
-import MonetizationIcon from "@material-ui/icons/MonetizationOn";
 import StarRate from "@material-ui/icons/StarRate";
 import NavigationIcon from "@material-ui/icons/Navigation";
 import Fab from "@material-ui/core/Fab";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import MovieReviews from "../movieReviews";
 import CastList from "../castList";
+import { getRecomendedShows, getShowCast } from "../../api/tmdb-api";
+import Grid from "@material-ui/core/Grid";
+import AppBar from "@material-ui/core/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import Box from "@material-ui/core/Box";
+import PropTypes from "prop-types";
+import TvList from "../tvList";
+
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
+  };
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,10 +67,38 @@ const useStyles = makeStyles((theme) => ({
     bottom: theme.spacing(2),
     right: theme.spacing(2),
   },
+  tab: {
+    display: "flex",
+    justifyContent: "center",
+    flexWrap: "wrap",
+    listStyle: "none",
+    padding: theme.spacing(1.5),
+    margin: 0,
+    backgroundColor: theme.palette.background.paper,
+  }
 }));
 
-const TvDetails = ({ show }) => {
+const TvDetails = ({ show, action }) => {
   const classes = useStyles();
+  const [value, setValue] = useState(0);
+  const [stars, setStars] = useState([]);
+  const [crew, setCrew] = useState([]);
+  const [recomendedShows, setRecomendedShows] = useState([]);
+
+  useEffect(() => {
+    getShowCast(show.id).then((castAndCrew) => {
+      setStars(castAndCrew.cast.slice(0,12))
+      setCrew(castAndCrew.crew.slice(0,12))
+    })
+    getRecomendedShows(show.id).then((shows) => {
+      setRecomendedShows(shows.results)
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   return (
     <>
@@ -75,6 +141,35 @@ const TvDetails = ({ show }) => {
           </li>
         ))}
       </Paper>
+      <div className={classes.tab}>
+        <AppBar position="static">
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            aria-label="simple tabs example"
+            variant="fullWidth"
+          >
+            <Tab label="Cast" {...a11yProps(0)} />
+            <Tab label="Crew" {...a11yProps(1)} />
+            <Tab label="Recomended Shows" {...a11yProps(2)} />
+          </Tabs>
+        </AppBar>
+        <TabPanel value={value} index={0}>
+          <Grid container className={classes.root}>
+            <CastList stars={stars} />
+          </Grid>
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+        <Grid container className={classes.root}>
+            <CastList stars={crew} />
+          </Grid>
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+        <Grid container className={classes.root}>
+          <TvList shows={recomendedShows} action={action}/>
+          </Grid>
+        </TabPanel>
+      </div>
     </>
   );
 };

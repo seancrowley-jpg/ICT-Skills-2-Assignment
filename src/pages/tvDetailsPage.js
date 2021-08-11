@@ -4,7 +4,9 @@ import TvDetails from "../components/tvDetails";
 import PageTemplate from "../components/templateTvPage";
 import { getTvDetails} from '../api/tmdb-api'
 import { useQuery } from "react-query";
-import Spinner from '../components/spinner'
+import Spinner from '../components/spinner';
+import AddToFavoritesIcon from "../components/cardIcons/addTVToFavorites";
+
 
 const TvDetailsPage = (props) => {
   const { id } = props.match.params
@@ -27,7 +29,10 @@ const TvDetailsPage = (props) => {
       {show ? (
         <>
           <PageTemplate show={show}>
-            <TvDetails show={show}/>
+            <TvDetails show={show}
+            action={(show) => {
+              return <AddToFavoritesIcon show={show} />
+            }}/>
           </PageTemplate>
         </>
       ) : (

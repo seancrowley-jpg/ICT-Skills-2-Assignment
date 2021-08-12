@@ -163,7 +163,7 @@ export const getMovie = async ( args ) => {
 
   export const getRecomendedShows = async (id) => {
     const response = await fetch(
-      ` https://api.themoviedb.org/3/tv/${id}/recommendations?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`
+      `https://api.themoviedb.org/3/tv/${id}/recommendations?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`
     );
     if (!response.ok) {
       throw new Error(response.json().message);
@@ -171,3 +171,16 @@ export const getMovie = async ( args ) => {
     //console.log(response)
     return response.json();
   };
+
+  export const getQueriedMovies = async (searchValue) => {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/search/movie?query=${searchValue}&api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1&include_adult=false`
+    );
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    //console.log(response)
+    return response.json();
+  };
+
+

@@ -183,4 +183,26 @@ export const getMovie = async ( args ) => {
     return response.json();
   };
 
+  export const getPersonMovieCredits = async (id) => {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`
+    );
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    //console.log(response)
+    return response.json();
+  };
+
+  export const getPersonTvCredits = async (id) => {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/person/${id}/tv_credits?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`
+    );
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    //console.log(response)
+    return response.json();
+  };
+
 

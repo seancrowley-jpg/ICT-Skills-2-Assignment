@@ -1,4 +1,4 @@
-import React, { useState, useQuery } from "react";
+import React, { useState, useEffect } from "react";
 import Chip from "@material-ui/core/Chip";
 import Paper from "@material-ui/core/Paper";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
@@ -10,8 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import MovieReviews from "../movieReviews";
-import CastList from "../castList";
-import { getMovieCast } from "../../api/tmdb-api";
+import { getPersonMovieCredits, getPersonTvCredits } from "../../api/tmdb-api";
 import Grid from "@material-ui/core/Grid";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
@@ -19,6 +18,8 @@ import Tab from "@material-ui/core/Tab";
 import Box from "@material-ui/core/Box";
 import PropTypes from "prop-types";
 import CakeIcon from "@material-ui/icons/Cake";
+import MovieList from "../movieList";
+import TvList from "../tvList";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -76,9 +77,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PersonDetails = ({ person }) => {
+const PersonDetails = ({ person, action }) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const [movies, setMovies] = useState([]);
+  const [shows, setShows] = useState([]);
+
+  useEffect(() => {
+    getPersonMovieCredits(person.id).then((castAndCrew) => {
+      setMovies(castAndCrew.cast.slice(0,12))
+    })
+    getPersonTvCredits(person.id).then((castAndCrew) => {
+      setShows(castAndCrew.cast.slice(0,12))
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -143,10 +156,14 @@ const PersonDetails = ({ person }) => {
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
-          Item One
+        <Grid container className={classes.root}>
+            <MovieList movies={movies} action={action} />
+          </Grid>
         </TabPanel>
         <TabPanel value={value} index={1}>
-          Item Two
+        <Grid container className={classes.root}>
+            <TvList shows={shows} action={action} />
+          </Grid>
         </TabPanel>
       </div>
     </>

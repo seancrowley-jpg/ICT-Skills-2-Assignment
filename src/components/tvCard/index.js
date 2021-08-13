@@ -28,9 +28,9 @@ const useStyles = makeStyles({
 export default function TvCard({ show, action }) {
   const classes = useStyles();
 
-  const { favorites, addToTvFavorites } = useContext(MoviesContext);
+  const { tvFavorites, addToTvFavorites } = useContext(MoviesContext);
 
-  if (favorites.find((id) => id === show.id)) {
+  if (tvFavorites.find((id) => id === show.id)) {
     show.favorite = true;
   } else {
     show.favorite = false;

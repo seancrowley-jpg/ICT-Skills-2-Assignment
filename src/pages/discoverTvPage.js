@@ -19,11 +19,6 @@ const DiscoverTvPage = (props) => {
   }  
   const shows = data.results;
 
-  // Redundant, but necessary to avoid app crashing.
-  const favorites = shows.filter(s => s.favorite)
-  localStorage.setItem('favorites', JSON.stringify(favorites))
-  const addToTvFavorites = (showId) => true 
-
   return (
     <PageTemplate
       title="Discover Tv Shows"

@@ -77,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PersonDetails = ({ person, action }) => {
+const PersonDetails = ({ person, action, actionTv }) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const [movies, setMovies] = useState([]);
@@ -162,7 +162,7 @@ const PersonDetails = ({ person, action }) => {
         </TabPanel>
         <TabPanel value={value} index={1}>
         <Grid container className={classes.root}>
-            <TvList shows={shows} action={action} />
+            <TvList shows={shows} action={actionTv} />
           </Grid>
         </TabPanel>
       </div>

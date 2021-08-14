@@ -13,7 +13,7 @@ const PaginationButtons = ({page, setPage, isFetching}) => {
 
   return (
     <Paper className={classes.root}>
-      <span>Current Page: {page}</span>
+      <span>Current Page: {page}</span><br/>
       <button
         onClick={() => setPage((old) => Math.max(old - 1, 0))}
         disabled={page === 1}
@@ -27,7 +27,7 @@ const PaginationButtons = ({page, setPage, isFetching}) => {
       >
         Next Page
       </button>
-      {isFetching ? <span> Loading...</span> : null}{" "}
+      {isFetching ? <span><br/> Loading...</span> : null}{" "}
     </Paper>
   );
 }

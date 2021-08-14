@@ -6,7 +6,11 @@ import {getMovies} from '../api/tmdb-api'
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
 
 const HomePage = (props) => {
-  const {  data, error, isLoading, isError }  = useQuery('discover', getMovies)
+  const [page, setPage] = React.useState(1);
+  const {  data, error, isLoading, isError, isFetching}  = useQuery(
+    ['discover', page], () => getMovies(page),
+    { keepPreviousData: true }
+  )
 
   if (isLoading) {
     return <Spinner />
@@ -29,6 +33,9 @@ const HomePage = (props) => {
       action={(movie) => {
         return <AddToFavoritesIcon movie={movie} />
       }}
+      page={page}
+      setPage={setPage}
+      isFetching={isFetching}
     />
 );
 };

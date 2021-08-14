@@ -85,10 +85,16 @@ const PersonDetails = ({ person, action, actionTv }) => {
 
   useEffect(() => {
     getPersonMovieCredits(person.id).then((castAndCrew) => {
-      setMovies(castAndCrew.cast.slice(0,12))
+      const movieCastCred = castAndCrew.cast.slice(0,12)
+      const movieCrewCred = castAndCrew.crew.slice(0,12)
+      const movieCred = movieCastCred.concat(movieCrewCred)
+      setMovies(movieCred)
     })
     getPersonTvCredits(person.id).then((castAndCrew) => {
-      setShows(castAndCrew.cast.slice(0,12))
+      const tvCastCred = castAndCrew.cast.slice(0,12)
+      const tvCrewCred = castAndCrew.crew.slice(0,12)
+      const tvCred = tvCastCred.concat(tvCrewCred)
+      setShows(tvCred)
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

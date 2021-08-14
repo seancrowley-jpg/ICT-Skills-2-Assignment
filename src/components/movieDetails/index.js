@@ -19,6 +19,7 @@ import Tab from "@material-ui/core/Tab";
 import Box from "@material-ui/core/Box";
 import PropTypes from "prop-types";
 import MovieList from "../movieList";
+import StarRating from "../starRating";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -81,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const MovieDetails = ({ movie, action }) => {
+const MovieDetails = ({ movie, action, actionRating }) => {
   const classes = useStyles();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [value, setValue] = useState(0);
@@ -148,6 +149,9 @@ const MovieDetails = ({ movie, action }) => {
           </li>
         ))}
       </Paper>
+      <Paper component="ul" className={classes.root}>
+        {actionRating(movie)}
+        </Paper>
       <Fab
         color="secondary"
         variant="extended"

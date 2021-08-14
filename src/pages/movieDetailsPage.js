@@ -7,6 +7,7 @@ import { getMovie } from '../api/tmdb-api'
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner'
 import AddToFavoritesIcon from "../components/cardIcons/addToFavorites";
+import StarRating from "../components/starRating"
 
 const MovieDetailsPage = (props) => {
   const { id } = props.match.params
@@ -36,6 +37,9 @@ const MovieDetailsPage = (props) => {
             <MovieDetails movie={movie}
             action={(movie) => {
               return <AddToFavoritesIcon movie={movie} />
+            }}
+            actionRating={(movie) => {
+              return <StarRating movie={movie} />
             }}/>
           </PageTemplate>
         </>

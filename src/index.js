@@ -11,6 +11,7 @@ import AddMovieReviewPage from "./pages/addMovieReviewPage";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import MoviesContextProvider from "./contexts/moviesContext";
+import { AuthProvider } from "./contexts/authContext";
 import DiscoverTvPage from "./pages/discoverTvPage";
 import TvPage from "./pages/tvDetailsPage";
 import PersonPage from "./pages/personDetailsPage";
@@ -32,6 +33,7 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
+      <AuthProvider>
         <SiteHeader /> {/* New Header  */}
         <MoviesContextProvider>
           <Switch>
@@ -62,6 +64,7 @@ const App = () => {
             <Redirect from="*" to="/" />
           </Switch>
         </MoviesContextProvider>
+        </AuthProvider>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>

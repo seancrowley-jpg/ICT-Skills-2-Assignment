@@ -11,6 +11,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { useAuth } from "../../contexts/authContext"
 import Alert from "@material-ui/lab/Alert";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -39,6 +40,7 @@ export default function Login() {
   const {logIn} = useAuth()
   const [error, setError] = useState("")
   const [loading, SetLoading] = useState(false)
+  const history = useHistory();
 
   async function handleSubmit(e) {
       e.preventDefault()
@@ -47,6 +49,7 @@ export default function Login() {
           SetLoading(true)
           console.log(emailRef.current.value)
           await logIn(emailRef.current.value, passwordRef.current.value)
+          history.push("/")
       } catch {
           setError("Failed to Sign in")
       }

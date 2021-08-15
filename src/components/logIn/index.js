@@ -32,11 +32,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp() {
+export default function Login() {
   const emailRef = useRef()
   const passwordRef = useRef()
   const classes = useStyles()
-  const {signUp} = useAuth()
+  const {logIn} = useAuth()
   const [error, setError] = useState("")
   const [loading, SetLoading] = useState(false)
 
@@ -46,9 +46,9 @@ export default function SignUp() {
           setError("")
           SetLoading(true)
           console.log(emailRef.current.value)
-          await signUp(emailRef.current.value, passwordRef.current.value)
+          await logIn(emailRef.current.value, passwordRef.current.value)
       } catch {
-          setError("Sign up Failed")
+          setError("Failed to Sign in")
       }
       SetLoading(false)
   }
@@ -61,7 +61,7 @@ export default function SignUp() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Log In
         </Typography>
         {error && <Alert severity="error">{error}</Alert>}
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
@@ -101,12 +101,12 @@ export default function SignUp() {
             className={classes.submit}
             disabled={loading}
           >
-            Sign Up
+            Log In
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="/login" variant="body2">
-                Already have an account? Sign in
+              <Link href="/signup" variant="body2">
+                Dont have an account? Sign Up
               </Link>
             </Grid>
           </Grid>

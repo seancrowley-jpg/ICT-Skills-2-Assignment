@@ -18,6 +18,7 @@ import PersonPage from "./pages/personDetailsPage";
 import SearchPage from "./pages/searchPage";
 import SignUpPage from "./pages/signUpPage";
 import LogInPage from "./pages/logInPage";
+import PrivateRoute from "./components/privateRoute";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -44,7 +45,7 @@ const App = () => {
               component={UpcomingMoviesPage}
             />
             <Route path="/reviews/:id" component={MovieReviewPage} />
-            <Route
+            <PrivateRoute
               exact
               path="/movies/favorites"
               component={FavoriteMoviesPage}
@@ -57,7 +58,7 @@ const App = () => {
             <Route path="/movies/:id" component={MoviePage} />
             <Route path="/tv/:id" component={TvPage} />
             <Route path="/person/:id" component={PersonPage} />
-            <Route exact path="/search" component={SearchPage} />
+            <PrivateRoute exact path="/search" component={SearchPage} />
             <Route exact path="/signup" component={SignUpPage} />
             <Route exact path="/login" component={LogInPage} />
             <Route exact path="/" component={HomePage} />

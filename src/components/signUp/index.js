@@ -1,16 +1,16 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { useAuth } from "../../contexts/authContext"
+import Alert from "@material-ui/lab/Alert";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
+    width: "100%",
     marginTop: theme.spacing(3),
   },
   submit: {
@@ -33,10 +33,25 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignUp() {
-  const nameRef = useRef();
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const classes = useStyles();
+  const emailRef = useRef()
+  const passwordRef = useRef()
+  const classes = useStyles()
+  const {signUp} = useAuth()
+  const [error, setError] = useState("")
+  const [loading, SetLoading] = useState(false)
+
+  async function handleSubmit(e) {
+      e.preventDefault()
+      try{
+          setError("")
+          SetLoading(true)
+          console.log(emailRef.current.value)
+          await signUp(emailRef.current.value, passwordRef.current.value)
+      } catch {
+          setError("Sign up Failed")
+      }
+      SetLoading(false)
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -48,29 +63,18 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        {error && <Alert severity="error">{error}</Alert>}
+        <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
-                autoComplete="name"
-                name="name"
-                variant="outlined"
-                ref = {nameRef}
-                required
-                fullWidth
-                id="name"
-                label="Name"
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
                 variant="outlined"
                 required
                 fullWidth
-                ref = {emailRef}
+                inputRef = {emailRef}
                 id="email"
                 label="Email Address"
+                type="email"
                 name="email"
                 autoComplete="email"
               />
@@ -80,7 +84,7 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
-                ref = {passwordRef}
+                inputRef = {passwordRef}
                 name="password"
                 label="Password"
                 type="password"
@@ -95,6 +99,7 @@ export default function SignUp() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            disabled={loading}
           >
             Sign Up
           </Button>

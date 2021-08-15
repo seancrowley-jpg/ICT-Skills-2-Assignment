@@ -15,6 +15,7 @@ import DiscoverTvPage from "./pages/discoverTvPage";
 import TvPage from "./pages/tvDetailsPage";
 import PersonPage from "./pages/personDetailsPage";
 import SearchPage from "./pages/searchPage";
+import SignUpPage from "./pages/signUpPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -54,6 +55,7 @@ const App = () => {
             <Route path="/tv/:id" component={TvPage} />
             <Route path="/person/:id" component={PersonPage} />
             <Route exact path="/search" component={SearchPage} />
+            <Route exact path="/signup" component={SignUpPage} />
             <Route exact path="/" component={HomePage} />
             <Redirect from="*" to="/" />
           </Switch>

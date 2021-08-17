@@ -6,7 +6,7 @@ import { getTvDetails} from '../api/tmdb-api'
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner';
 import AddToFavoritesIcon from "../components/cardIcons/addTVToFavorites";
-
+import AddToPersonFavoritesIcon from "../components/cardIcons/addPersonToFavorites";
 
 const TvDetailsPage = (props) => {
   const { id } = props.match.params
@@ -32,6 +32,9 @@ const TvDetailsPage = (props) => {
             <TvDetails show={show}
             action={(show) => {
               return <AddToFavoritesIcon show={show} />
+            }}
+            actionPerson={(person) => {
+              return <AddToPersonFavoritesIcon person={person} />
             }}/>
           </PageTemplate>
         </>

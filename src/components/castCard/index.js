@@ -25,13 +25,33 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CastCard({ star }) {
+export default function CastCard({ star, action }) {
   const classes = useStyles();
+
+  const { personFavorites, addPersonToFavorites } = useContext(MoviesContext);
+
+  if (personFavorites.find((id) => id === star.id)) {
+    star.favorite = true;
+  } else {
+    star.favorite = false;
+  }
+
+  const handleAddToFavorite = (e) => {
+    e.preventDefault();
+    addPersonToFavorites(star);
+  };
 
   return (
     <Card className={classes.card}>
       <CardHeader
         className={classes.header}
+        avatar={
+          star.favorite ? (
+            <Avatar className={classes.avatar}>
+              <FavoriteIcon />
+            </Avatar>
+          ) : null
+        }
         title={
           <Typography variant="h5" component="p">
             {star.name}
@@ -57,6 +77,7 @@ export default function CastCard({ star }) {
         </Grid>
       </CardContent>
       <CardActions disableSpacing>
+        {action(star)}
         <Link to={`/person/${star.id}`}>
           <Button variant="outlined" size="medium" color="primary">
             View Profile

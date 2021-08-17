@@ -12,7 +12,7 @@ const PersonDetailsPage = (props) => {
   const { id } = props.match.params;
 
   const { data: person, error, isLoading, isError } = useQuery(
-    ["show", { id: id }],
+    ["person", { id: id }],
     getPersonDetails
   );
 

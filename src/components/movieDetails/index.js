@@ -21,6 +21,7 @@ import PropTypes from "prop-types";
 import MovieList from "../movieList";
 import StarRating from "../starRating";
 
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -82,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const MovieDetails = ({ movie, action, actionRating }) => {
+const MovieDetails = ({ movie, action, actionPerson}) => {
   const classes = useStyles();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [value, setValue] = useState(0);
@@ -150,7 +151,7 @@ const MovieDetails = ({ movie, action, actionRating }) => {
         ))}
       </Paper>
       <Paper component="ul" className={classes.root}>
-        {actionRating(movie)}
+        <StarRating movie ={movie} />
         </Paper>
       <Fab
         color="secondary"
@@ -176,12 +177,12 @@ const MovieDetails = ({ movie, action, actionRating }) => {
         </AppBar>
         <TabPanel value={value} index={0}>
           <Grid container className={classes.root}>
-            <CastList stars={stars} />
+            <CastList stars={stars} action={actionPerson}/>
           </Grid>
         </TabPanel>
         <TabPanel value={value} index={1}>
         <Grid container className={classes.root}>
-            <CastList stars={crew} />
+            <CastList stars={crew} action={actionPerson} />
           </Grid>
         </TabPanel>
         <TabPanel value={value} index={2}>

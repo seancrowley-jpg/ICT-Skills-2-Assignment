@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const TvDetails = ({ show, action }) => {
+const TvDetails = ({ show, action, actionPerson }) => {
   const classes = useStyles();
   const [value, setValue] = useState(0);
   const [stars, setStars] = useState([]);
@@ -156,12 +156,12 @@ const TvDetails = ({ show, action }) => {
         </AppBar>
         <TabPanel value={value} index={0}>
           <Grid container className={classes.root}>
-            <CastList stars={stars} />
+            <CastList stars={stars} action={actionPerson}/>
           </Grid>
         </TabPanel>
         <TabPanel value={value} index={1}>
         <Grid container className={classes.root}>
-            <CastList stars={crew} />
+            <CastList stars={crew} action={actionPerson}/>
           </Grid>
         </TabPanel>
         <TabPanel value={value} index={2}>

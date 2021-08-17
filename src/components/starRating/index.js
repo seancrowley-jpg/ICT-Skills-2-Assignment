@@ -26,20 +26,17 @@ const useStyles = makeStyles({
 });
 
 export default function HoverRating({ movie }) {
-    const { myStarRatings, addStarRating } = useContext(MoviesContext);
+  const context = useContext(MoviesContext);
   const [value, setValue] = React.useState(null);
   const [hover, setHover] = React.useState(-1);
   const classes = useStyles();
-  
-  {/*if (myStarRatings.find((id) => id === movie.id)) {
-    setValue(movie.rating);
-  }*/}
 
   const handleAddStarRating = (e) => {
     e.preventDefault();
-    addStarRating(movie, value);
+    context.addStarRating(movie, value);
   };
-  //console.log
+  console.log("Value")
+  console.log(value)
 
   return (
     <div className={classes.root}>

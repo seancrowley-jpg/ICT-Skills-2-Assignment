@@ -8,13 +8,21 @@ const MoviesContextProvider = (props) => {
   const [favorites, setFavorites] = useState([]);
   const [tvFavorites, setTvFavorites] = useState([]);
   const [mustWatch, setMustWatch] = useState([]);
+  const [personFavorites, setPersonFavorites] = useState([]);
 
   const addToFavorites = (movie) => {
     setFavorites([...favorites, movie.id]);
   };
+
   const addTvToFavorites = (show) => {
     setTvFavorites([...tvFavorites, show.id]);
   };
+
+  const addPersonToFavorites = (person) => {
+    setPersonFavorites([...personFavorites, person.id]);
+    console.log(personFavorites)
+  };
+
   // We will use this function in a later section
   const removeFromFavorites = (movie) => {
     setFavorites(favorites.filter((mId) => mId !== movie.id));
@@ -22,6 +30,10 @@ const MoviesContextProvider = (props) => {
 
   const removeFromTvFavorites = (show) => {
     setTvFavorites(tvFavorites.filter((sId) => sId !== show.id));
+  };
+
+  const removeFromPeopleFavorites = (person) => {
+    setPersonFavorites(personFavorites.filter((pId) => pId !== person.id));
   };
 
   const addReview = (movie, review) => {
@@ -43,9 +55,12 @@ const MoviesContextProvider = (props) => {
       value={{
         favorites,
         tvFavorites,
+        personFavorites,
         myStarRatings,
         addToFavorites,
         addTvToFavorites,
+        addPersonToFavorites,
+        removeFromPeopleFavorites,
         removeFromFavorites,
         removeFromTvFavorites,
         addReview,

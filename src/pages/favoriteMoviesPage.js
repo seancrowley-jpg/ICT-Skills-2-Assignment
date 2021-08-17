@@ -2,16 +2,18 @@ import React, { useContext } from "react";
 import PageTemplate from "../components/templateFavoritesPage";
 import { MoviesContext } from "../contexts/moviesContext";
 import { useQueries } from "react-query";
-import { getMovie, getTvDetails } from "../api/tmdb-api";
+import { getMovie, getPersonDetails, getTvDetails } from "../api/tmdb-api";
 import Spinner from '../components/spinner';
 import RemoveFromFavorites from "../components/cardIcons/removeFromFavorites";
 import RemoveFromTvFavorites from "../components/cardIcons/removeFromTvFavorites";
 import WriteReview from "../components/cardIcons/writeReview";
+import RemoveFromPersonFavoritesIcon from "../components/cardIcons/removeFromPersonFavorites";
 
 
 const FavoriteMoviesPage = () => {
   const {favorites: movieIds } = useContext(MoviesContext);
   const {tvFavorites: showIds } = useContext(MoviesContext);
+  const {personFavorites: personIds } = useContext(MoviesContext);
 
   // Create an array of queries and run in parallel.
   const favoriteMovieQueries = useQueries(
@@ -37,11 +39,23 @@ const FavoriteMoviesPage = () => {
   // Check if any of the parallel queries is still loading.
   const isLoadingShow = favoriteShowQueries.find((s) => s.isLoading === true);
 
-  if (isLoadingMovie || isLoadingShow) {
+  const favoritePeopleQueries = useQueries(
+    personIds.map((personId) => {
+      return {
+        queryKey: ["person", { id: personId }],
+        queryFn: getPersonDetails,
+      };
+    })
+  );
+  // Check if any of the parallel queries is still loading.
+  const isLoadingPerson = favoritePeopleQueries.find((p) => p.isLoading === true);
+
+  if (isLoadingMovie || isLoadingShow || isLoadingPerson) {
     return <Spinner />;
   }
   const movies = favoriteMovieQueries.map((q) => q.data);
   const shows = favoriteShowQueries.map((q) => q.data);
+  const people = favoritePeopleQueries.map((q) => q.data);
   const toDo = () => true;
 
   console.log(shows);
@@ -51,6 +65,7 @@ const FavoriteMoviesPage = () => {
       title="Favorites"
       movies={movies}
       shows={shows}
+      people={people}
       action={(movie) => {
         return (
           <>
@@ -63,6 +78,13 @@ const FavoriteMoviesPage = () => {
         return (
           <>
             <RemoveFromTvFavorites show={show} />
+          </>
+        );
+      }}
+      actionPerson={(person) => {
+        return (
+          <>
+            <RemoveFromPersonFavoritesIcon person={person} />
           </>
         );
       }}

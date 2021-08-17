@@ -5,6 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import MovieList from "../movieList";
 import TvList from "../tvList";
+import CastList from "../castList";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function FavoritesPageTemplate({ movies, shows, title, action, actionTv }) {
+function FavoritesPageTemplate({ movies, shows, people, title, action, actionTv, actionPerson }) {
   const classes = useStyles();
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
@@ -34,10 +35,19 @@ function FavoritesPageTemplate({ movies, shows, title, action, actionTv }) {
       return genreId > 0 ? s.genre_ids.includes(genreId) : true;
     });
 
+    let displayedPeople = people
+    .filter((s) => {
+      return s.name.toLowerCase().search(nameFilter.toLowerCase()) !== -1;
+    })
+    .filter((s) => {
+      return genreId > 0 ? s.genre_ids.includes(genreId) : true;
+    });
+
   const handleChange = (type, value) => {
     if (type === "name") setNameFilter(value);
     else setGenreFilter(value);
   };
+  console.log(people)
 
   return (
     <Grid container className={classes.root}>
@@ -54,6 +64,7 @@ function FavoritesPageTemplate({ movies, shows, title, action, actionTv }) {
         </Grid>
         <MovieList action={action} movies={displayedMovies}></MovieList>
         <TvList action={actionTv} shows={displayedShows}></TvList>
+        <CastList action={actionPerson} stars={displayedPeople}></CastList>
       </Grid>
     </Grid>
   );

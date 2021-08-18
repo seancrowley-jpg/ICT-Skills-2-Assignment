@@ -327,6 +327,11 @@ Get Persons Tv Credits - Returns a list of shows where the person was involved
 
 ![][stories]
 
+My Story book view
+
+![storybook-movies-app](https://user-images.githubusercontent.com/59771293/129959125-fd3ba151-b27b-4732-9ad6-85c2a4c85d86.png)
+
+
 ### UI Design.
 
 ...... Insert screenshots of the app's views, with appropriate captions (see example below). (For the Movies Fan App, only show the new/modified views) ........

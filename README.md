@@ -1,6 +1,6 @@
 # Assignment - ReactJS app.
 
-Name: ... your name ...
+Name: Sean Crowley
 
 ## Overview.
 

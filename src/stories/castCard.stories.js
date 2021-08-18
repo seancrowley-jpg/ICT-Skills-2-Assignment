@@ -4,7 +4,7 @@ import SampleCast from "./sampleData";
 import { MemoryRouter } from "react-router";
 import MoviesContextProvider from "../contexts/moviesContext";
 import { action } from "@storybook/addon-actions";
-import AddToFavoritesIcon from "../components/cardIcons/addToFavorites";
+import AddPersonToFavoritesIcon from "../components/cardIcons/addPersonToFavorites";
 
 export default {
   title: "Movie Details Page/CastCard",
@@ -19,6 +19,7 @@ export const Basic = () => {
   return (
     <CastCard
       star={SampleCast.star}
+      action={(star) => <AddPersonToFavoritesIcon star={star} />}
     />
   );
 };
@@ -29,6 +30,7 @@ export const Exceptional = () => {
   return (
     <CastCard
       star={sampleNoPoster}
+      action={(star) => <AddPersonToFavoritesIcon star={star} />}
     />
   );
 };

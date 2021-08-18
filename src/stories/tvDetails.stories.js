@@ -3,6 +3,8 @@ import TvDetails from "../components/tvDetails";
 import SampleTv from "./sampleData";
 import { MemoryRouter } from "react-router";
 import MoviesContextProvider from "../contexts/moviesContext";
+import AddToPersonFavoritesIcon from "../components/cardIcons/addPersonToFavorites";
+import AddToTvFavoritesIcon from "../components/cardIcons/addTVToFavorites";
 
 export default {
   title: "Tv Details Page/TvDetails",
@@ -13,6 +15,13 @@ export default {
   ],
 };
 
-export const Basic = () => <TvDetails show={SampleTv.tv} />;
+export const Basic = () => (
+  <TvDetails
+    show={SampleTv.tv}
+    star={SampleTv.star}
+    actionPerson={(star) => <AddToPersonFavoritesIcon star={star} />}
+    action={(show) => <AddToTvFavoritesIcon show={show} />}
+  />
+);
 
 Basic.storyName = "Default";

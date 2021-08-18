@@ -69,8 +69,7 @@ export default function CastCard({ star, action }) {
       <CardContent>
         <Grid container>
           <Grid item xs={6}>
-            <Typography variant="h6" component="p">
-              {star.character}
+            <Typography variant="h8" component="p">
               <>{star.character ? <>{star.character}</> : <>{star.job}</>}</>
             </Typography>
           </Grid>

@@ -3,6 +3,8 @@ import PersonDetails from "../components/personDetails";
 import SamplePerson from "./sampleData";
 import { MemoryRouter } from "react-router";
 import MoviesContextProvider from "../contexts/moviesContext";
+import AddTvToFavoritesIcon from "../components/cardIcons/addTVToFavorites";
+import AddToFavoritesIcon from "../components/cardIcons/addToFavorites";
 
 export default {
   title: "Person Details Page/PersonDetails",
@@ -13,6 +15,14 @@ export default {
   ],
 };
 
-export const Basic = () => <PersonDetails person={SamplePerson.person} />;
+export const Basic = () => (
+  <PersonDetails
+    person={SamplePerson.person}
+    show={SamplePerson.tv}
+    movie={SamplePerson.movie}
+    action={(movie) => <AddToFavoritesIcon movie={movie} />}
+    actionTv={(show) => <AddTvToFavoritesIcon show={show} />}
+  />
+);
 
 Basic.storyName = "Default";

@@ -3,7 +3,7 @@ import TvList from "../components/tvList";
 import SampleTv from "./sampleData";
 import { MemoryRouter } from "react-router";
 import { action } from "@storybook/addon-actions";
-import AddToFavoritesIcon from "../components/cardIcons/addToFavorites";
+import AddTvToFavoritesIcon from "../components/cardIcons/addTVToFavorites";
 import Grid from "@material-ui/core/Grid";
 import MoviesContextProvider from "../contexts/moviesContext";
 
@@ -28,6 +28,7 @@ export const Basic = () => {
     <Grid container spacing={5}>
       <TvList
         shows={shows}
+        action={(show) => <AddTvToFavoritesIcon show={show} />}
       />
     </Grid>
   );

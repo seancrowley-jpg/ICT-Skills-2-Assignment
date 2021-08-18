@@ -4,7 +4,7 @@ import SampleTv from "./sampleData";
 import { MemoryRouter } from "react-router";
 import MoviesContextProvider from "../contexts/moviesContext";
 import { action } from "@storybook/addon-actions";
-import AddToFavoritesIcon from "../components/cardIcons/addToFavorites";
+import AddTvToFavoritesIcon from "../components/cardIcons/addTVToFavorites";
 
 export default {
   title: "Discover Tv Page/TvCard",
@@ -19,6 +19,8 @@ export const Basic = () => {
   return (
     <TvCard
       show={SampleTv.tv}
+      action={(show) => <AddTvToFavoritesIcon show={show} />}
+      taging={(show) => null}
     />
   );
 };
@@ -29,6 +31,8 @@ export const Exceptional = () => {
   return (
     <TvCard
       show={sampleNoPoster}
+      action={(show) => <AddTvToFavoritesIcon show={show} />}
+      taging={(show) => null}
     />
   );
 };

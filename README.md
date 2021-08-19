@@ -339,6 +339,29 @@ My Story book view
 ![][view]
 >Shows detailed information on a movie. Clicking the 'Reviews' floating action button will display extracts from critic reviews.
 
+![Home Page](https://user-images.githubusercontent.com/59771293/130093435-c844046e-30e5-42f0-963f-8ef352a5cdc2.png)
+>Home Page with pagination buttons and Login Button in Site Header
+
+![Home Page pagination](https://user-images.githubusercontent.com/59771293/130095524-8b9ab44a-a205-4fb7-b652-dbb91aa5529f.png)
+
+
+![Movie Details Cast](https://user-images.githubusercontent.com/59771293/130094318-cc7490ce-42ac-4c29-a392-32ab2a4bbdf2.png)
+>Movie Details page extended with tabs to see a movies Cast, Crew and Recomended Movies
+
+![Movie Details Crew](https://user-images.githubusercontent.com/59771293/130094392-e2341824-529a-44f3-9a44-6cd025ee74b2.png)
+![Movie Details Recomended](https://user-images.githubusercontent.com/59771293/130094550-6b8cedf6-6e29-42a2-8469-c5f4aed5f5f8.png)
+
+![Person Details page](https://user-images.githubusercontent.com/59771293/130094952-fd0f06a1-0592-4cc5-b0a6-19556f02242a.png)
+>Person details page displays information about a person plus their tv and movie credits
+
+![Person Details tab](https://user-images.githubusercontent.com/59771293/130095306-4a7a4304-dfb6-480b-b294-94386e029c50.png)
+
+
+
+
+
+
+
 ### Routing.
 
 ...... Insert a list of the routes supported by your app and state the associated view. If relevant, specify which of the routes require authentication, i.e. protected/private. [For the Movies Fan app, only new routes should be listed.] ......... 

@@ -6,7 +6,7 @@ Name: Sean Crowley
 
 ...... State the app concept and objectives. If it's the Movies Fan app extension, only state the additional objectives .........
 
-My addtional objectives for the Movies Fan app was to add a TV section to find popular shows and their details aswell as a person section to see their details and credits. I also wanted to extend the favorites page to include people and tv shows and add a search page for movies.
+My addtional objectives for the Movies Fan app was to add a TV section to find popular shows and their details aswell as a person section to see their details and credits. I also wanted to extend the favorites page to include people and tv shows and add a search page for movies. Also to add protected routes with authentication
 
 ...... A bullet-point list of user features. If it's the Movies Fan app extension, only list new/modified features...... 
  

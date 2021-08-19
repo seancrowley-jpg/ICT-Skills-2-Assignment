@@ -20,6 +20,7 @@ function SearchPageTemplate({ title, action }) {
   const [genreFilter, setGenreFilter] = useState("0");
   const genreId = Number(genreFilter);
   const [searchQuery, setSearchQuery] = useState("");
+  const text = "Movies"
 
   useEffect(() => {
     if(searchQuery){
@@ -54,6 +55,7 @@ function SearchPageTemplate({ title, action }) {
             onUserInput={handleChange}
             titleFilter={nameFilter}
             genreFilter={genreFilter}
+            text={text}
           />
         </Grid>
         <MovieList action={action} movies={displayedMovies}></MovieList>

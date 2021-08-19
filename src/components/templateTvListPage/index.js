@@ -18,6 +18,7 @@ function TvListPageTemplate({ shows, title, action, page, setPage, isFetching })
     const [nameFilter, setNameFilter] = useState("");
     const [genreFilter, setGenreFilter] = useState("0");
     const genreId = Number(genreFilter);
+    const text = "Tv"
   
     let displayedShows = shows
       .filter((s) => {
@@ -44,6 +45,7 @@ function TvListPageTemplate({ shows, title, action, page, setPage, isFetching })
               onUserInput={handleChange}
               titleFilter={nameFilter}
               genreFilter={genreFilter}
+              text={text}
             />
           </Grid>
           <TvList action={action} shows={displayedShows}></TvList>

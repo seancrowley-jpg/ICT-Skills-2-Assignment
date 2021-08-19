@@ -18,6 +18,7 @@ function FavoritesPageTemplate({ movies, shows, people, title, action, actionTv,
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const genreId = Number(genreFilter);
+  const text = "Favorites"
 
   let displayedMovies = movies
     .filter((m) => {
@@ -47,7 +48,6 @@ function FavoritesPageTemplate({ movies, shows, people, title, action, actionTv,
     if (type === "name") setNameFilter(value);
     else setGenreFilter(value);
   };
-  console.log(people)
 
   return (
     <Grid container className={classes.root}>
@@ -60,6 +60,7 @@ function FavoritesPageTemplate({ movies, shows, people, title, action, actionTv,
             onUserInput={handleChange}
             titleFilter={nameFilter}
             genreFilter={genreFilter}
+            text={text}
           />
         </Grid>
         <MovieList action={action} movies={displayedMovies}></MovieList>

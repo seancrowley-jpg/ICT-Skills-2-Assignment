@@ -17,6 +17,7 @@ function MovieListPageTemplate({ movies, title, action, page, setPage, isFetchin
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const genreId = Number(genreFilter);
+  const text = "Movies"
 
   let displayedMovies = movies
     .filter((m) => {
@@ -43,6 +44,7 @@ function MovieListPageTemplate({ movies, title, action, page, setPage, isFetchin
             onUserInput={handleChange}
             titleFilter={nameFilter}
             genreFilter={genreFilter}
+            text={text}
           />
         </Grid>
         <MovieList action={action} movies={displayedMovies}></MovieList>

@@ -325,19 +325,13 @@ Get Persons Tv Credits - Returns a list of shows where the person was involved
 
 ....... Insert a screenshot from the Storybook UI showing your component catalogue. [For the Movies app, hi-light stories relating to new/modified components - see the example screenshot below] .......
 
-![][stories]
-
 My Story book view
 
-![storybook-movies-app](https://user-images.githubusercontent.com/59771293/129959125-fd3ba151-b27b-4732-9ad6-85c2a4c85d86.png)
-
+![storybook-movies-app](https://user-images.githubusercontent.com/59771293/130106031-b8288904-bd0f-4c05-afa3-96be26ee301c.png)
 
 ### UI Design.
 
 ...... Insert screenshots of the app's views, with appropriate captions (see example below). (For the Movies Fan App, only show the new/modified views) ........
-
-![][view]
->Shows detailed information on a movie. Clicking the 'Reviews' floating action button will display extracts from critic reviews.
 
 ![Home Page](https://user-images.githubusercontent.com/59771293/130093435-c844046e-30e5-42f0-963f-8ef352a5cdc2.png)
 >Home Page with pagination buttons and Login Button in Site Header
@@ -356,9 +350,38 @@ My Story book view
 
 ![Person Details tab](https://user-images.githubusercontent.com/59771293/130095306-4a7a4304-dfb6-480b-b294-94386e029c50.png)
 
+![TV page](https://user-images.githubusercontent.com/59771293/130097550-916ad335-3875-40fd-aabd-4715c9edc85d.png)
+>Tv page displays popular tv shows. Also has pagination buttons.
+
+![TV page pagination](https://user-images.githubusercontent.com/59771293/130097851-ad2e78cb-c6c1-4849-8ff7-56815c6255c0.png)
+
+![Tv Details](https://user-images.githubusercontent.com/59771293/130098365-6783b07e-b0bb-4c33-b6ce-adbef378ef68.png)
+>Tv Details page show inforamtion regarding a particular show. Also shows the shows cast and crew aswell as Recommended Shows
+
+![Tv Details Cast](https://user-images.githubusercontent.com/59771293/130099042-b1c72946-0dc5-4262-9415-5786620316bc.png)
+![Tv Details Crew](https://user-images.githubusercontent.com/59771293/130099062-8bc35b22-e577-49ed-b747-c4f214d2fcc7.png)
+![Tv Details Recomended](https://user-images.githubusercontent.com/59771293/130099170-fc5a5fbe-23b6-4a10-81ec-649aee8a6d9d.png)
 
 
+![Login page](https://user-images.githubusercontent.com/59771293/130099343-1d8ca3b4-133c-4fb2-b548-61c75e8b0524.png)
+>In order to authenticate with firebase I created a login page. I also created a signup page.
 
+![signup page](https://user-images.githubusercontent.com/59771293/130099749-c79b09ae-e04f-4690-84be-3a060537ded8.png)
+
+![logged in header](https://user-images.githubusercontent.com/59771293/130099973-5ea0f974-8933-417a-8f32-ca4c714474a8.png)
+>Once Logged in the users email is displayed alongside a log out button
+
+![Search Page](https://user-images.githubusercontent.com/59771293/130100287-02cd7dd4-9ca7-4684-bfda-734c94b19f55.png)
+>The search page is a protected route that allows you to search for a particular moive
+
+![Search Page with query](https://user-images.githubusercontent.com/59771293/130100547-f94bdf3e-4d45-44a1-85d5-849ca88a4d85.png)
+
+![Favorites Page](https://user-images.githubusercontent.com/59771293/130101461-7d33286a-cea7-4b31-a282-9ee76c25669e.png)
+![Favorites Page2](https://user-images.githubusercontent.com/59771293/130101476-a9e29d74-0ced-4a2c-8e26-aeda0df50f4e.png)
+>Ive extended the favorites page to include Tv shows and people with links to go to their respective details pages. The favorites page is now also a protected route.
+
+![Favorites Page3](https://user-images.githubusercontent.com/59771293/130101859-35bd4c56-1b56-42bb-8bd8-3c69b6f6bbde.png)
+>The remove from favorites feature also applies to Tv shows and people
 
 
 
@@ -366,17 +389,25 @@ My Story book view
 
 ...... Insert a list of the routes supported by your app and state the associated view. If relevant, specify which of the routes require authentication, i.e. protected/private. [For the Movies Fan app, only new routes should be listed.] ......... 
 
-+ GET /blogs - displays all published blogs.
-+ POST /blogs (protected) - add a new blog.
-+ GET /blogs/:id - displays a particular blog.
-+ GET /blogs/:id/comments (protected) - detail view of a particular blog and its comments.
-+ etc.
-+ etc.
++ GET /tv - displays popular tv shows.
++ GET /tv/:id - displays details for a particular tv show.
++ GET /person/:id/ - detail view of a particular person.
++ GET /search (protected) - displays a page for searching for movies.
++ GET /movies/favorites (protected) - favorites page extended and now a protected route.
++ GET /login - login to firebase backend.
++ GET /signup - signup for firebase authentication
 
 ## Independent learning (If relevant).
 
 ....... Briefly state any technologies/techniques used in your project codebase that was not covered in the lectures/labs. Provide source code filename (source code excerpts are not required in most cases) references to support your assertions and include references (articles/blogs) ......... 
 
+In the project I used pagination, firebase authentication and search queries.
+
+In order to add pagination to the app I used the guide in the React Query docs at https://react-query.tanstack.com/guides/paginated-queries The component used is call "paginationButtons"
+
+To add the firebase backend authentication I used this video guide https://www.youtube.com/watch?v=PKwu15ldZ7k the code can be found in the contexts folder as authContext. It is primarily used in the login and signup componets aswell as the index.js file
+
+I learned how to implement search queries here https://www.freecodecamp.org/news/react-movie-app-tutorial/ (specifically the part related to searching for a movie)
 
 [model]: ./data.jpg
 [view]: ./view.png
